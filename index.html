@@ -126,30 +126,18 @@
     // Fungsi untuk memanggil API penghitung
     // Ganti 'website-keren-saya' dengan ID unik buatan Anda sendiri
     async function getVisitorCount() {
-    // Menggunakan API alternatif yang lebih stabil
-    const url = "https://api.countapi.xyz/hit/disdikpora-donggala-sig/visitor-stats";
+    // Ganti dengan URL Web App dari Google Apps Script Anda
+    const url = "https://script.google.com/macros/s/AKfycbzkcS-FpYCrf-4wtDoOjOHAnlSNyll1yjUzi3qSKUs6lDmbOokoZBj-iGmcwYHZCOVe7Q/exec";
 
     try {
         const response = await fetch(url);
-        
-        // Memastikan respons berhasil diterima
-        if (!response.ok) {
-            throw new Error('Gagal terhubung ke server');
-        }
-        
-        const data = await response.json();
-        
-        // Memperbarui tampilan di dashboard
-        document.getElementById('st-visitor').innerText = data.value.toLocaleString();
+        const data = await response.text();
+        document.getElementById('st-visitor').innerText = data;
     } catch (error) {
-        console.error("Error pada penghitung:", error);
-        // Menampilkan pesan atau angka statis sebagai fallback
-        document.getElementById('st-visitor').innerText = "1"; 
+        console.error("Gagal memuat:", error);
+        document.getElementById('st-visitor').innerText = "1";
     }
 }
-
-// Jalankan fungsi
-getVisitorCount();
 
     
 
