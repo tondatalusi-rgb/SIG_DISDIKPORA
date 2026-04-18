@@ -91,8 +91,9 @@
             </div>
         </div>
         
-        <footer class="p-3 text-center text-[11px] text-gray-500 border-t border-gray-700 bg-[#2c3136]">
+        <footer class="p-3 text-center text-[12px] text-gray-500 border-t border-gray-700 bg-[#2c3136]">
             © 2026 DISDIKPORA KAB. DONGGALA
+<p>KOMBEL TONDA TALUSI - SOUBATIK</p>
         </footer>
     </aside>
 
@@ -126,24 +127,27 @@
     // Fungsi untuk memanggil API penghitung
     // Ganti 'website-keren-saya' dengan ID unik buatan Anda sendiri
     async function getVisitorCount() {
-        const namespace = "my-github-site-unique-id"; 
-        const key = "visitor-stats";
+    // Pastikan namespace ini SAMA untuk semua pengguna web Anda
+    const namespace = "disdikpora-donggala-sig"; 
+    const key = "visitor-stats";
 
-        try {
-            // Mengambil data sekaligus menambah (+1) jumlah pengunjung
-            const response = await fetch(`https://api.countapi.xyz/hit/${namespace}/${key}`);
-            const data = await response.json();
-            
-            // Menampilkan hasil akumulasi global ke ID 'st-visitor'
-            document.getElementById('st-visitor').innerText = data.value;
-        } catch (error) {
-            console.error("Gagal memuat jumlah pengunjung:", error);
-            document.getElementById('st-visitor').innerText = "1";
-        }
+    try {
+        // API ini akan menambah +1 pada counter global setiap kali fungsi ini dipanggil
+        const response = await fetch(`https://api.countapi.xyz/hit/${namespace}/${key}`);
+        const data = await response.json();
+        
+        // Menampilkan hasil akumulasi global ke elemen dengan ID 'st-visitor'
+        document.getElementById('st-visitor').innerText = data.value;
+    } catch (error) {
+        console.error("Gagal memuat jumlah pengunjung:", error);
+        document.getElementById('st-visitor').innerText = "Err";
     }
+}
 
-    // Jalankan fungsi saat halaman dibuka
-    getVisitorCount();
+// Jalankan fungsi saat halaman dibuka
+getVisitorCount();
+
+    
 
     const sheetId = '1wKoBJN32c7RPvi024pum3uC0wvE8NA032G-fNbHWNOY';
     const csvUrl = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:csv`;
