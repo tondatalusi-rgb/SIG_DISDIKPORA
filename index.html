@@ -188,14 +188,14 @@
                 schoolData.push({
                     id: i, nama: cols[0], lat: parseFloat(cols[1]), lng: parseFloat(cols[2]),
                     jenjang: jnj, fotoDrive: cols[4], npsn: cols[5], alamat: cols[6],
-                    kecamatan: kec, kepsek: cols[7], guru: parseInt(cols[11]) || 0,
-                    siswaL: parseInt(cols[9]) || 0, siswaP: parseInt(cols[10]) || 0,
+                    kecamatan: kec, kepsek: cols[7], guru: parseInt(cols[10]) || 0,
+                    siswaL: parseInt(cols[8]) || 0, siswaP: parseInt(cols[9]) || 0,
                     operator: cols[14] || "-", 
                     rombel: cols[11] || "-",    
                     kurikulum: cols[15] || "-", 
                     akreditasi: cols[12] || "-", status: (cols[13] || "SWASTA").toUpperCase(),
-                    hasPerpus: cols[18] === "1" || (cols[18] && cols[18].toUpperCase() === "ADA"),
-                    linkRef: cols[21] || "#", linkWeb: cols[22] || "#"
+                    hasPerpus: cols[16] === "1" || (cols[16] && cols[16].toUpperCase() === "ADA"),
+                    linkKemdikbud: cols[17] || "#", linkWeb: cols[18] || "#"
                 });
             }
         });
@@ -269,7 +269,8 @@
                              <span class="material-icons" style="font-size:10px; vertical-align:middle">place</span> ${d.alamat}
                         </p>
                         <div style="display:flex; gap:4px; margin-top:12px;">
-                            <a href="${d.linkRef}" target="_blank" class="btn-lte">REFERENSI</a>
+                            <a href="${d.linkKemdikbud}" target="_blank" class="btn-lte">REFERENSI</a>
+                            <a href="https://guru.kemendikdasmen.go.id/" target="_blank" class="btn-lte">RUANG GURU</a> 
                             <a href="${d.linkWeb}" target="_blank" class="btn-lte">WEB</a> 
                         </div>
                     </div>
