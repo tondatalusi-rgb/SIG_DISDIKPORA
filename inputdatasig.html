@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Data SIG Donggala</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-100 min-h-screen p-4 flex items-center justify-center">
+    <div class="max-w-2xl w-full bg-white p-8 rounded-3xl shadow-2xl">
+        <div class="text-center mb-8">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e5/Lambang_Kabupaten_Donggala_%282015-sekarang%29.png" 
+         alt="Logo Kabupaten Donggala" 
+         class="h-24 mx-auto mb-4">
+    
+    <h1 class="text-lg font-bold text-slate-800 uppercase">Pemutakhiran Data & Foto</h1>
+    <p class="text-sm text-slate-500 font-semibold">SISTEM INFORMASI GEOGRAFIS DISDIKPORA <p>KABUPATEN DONGGALA</p>
+</div>
+        
+        <form id="uploadForm" class="space-y-5">
+            <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Pilih Sekolah:</label>
+                <select id="namaSekolah" class="w-full border-2 border-slate-200 p-3 rounded-xl focus:border-blue-500 outline-none" required>
+                    <option value="">-- Memuat daftar sekolah... --</option>
+                </select>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="md:col-span-2">
+                    <label class="block text-[10px] font-bold text-slate-500 uppercase ml-1">Nama Kepala Sekolah</label>
+                    <input type="text" id="kepsek" placeholder="Nama Lengkap & Gelar" class="w-full border-2 border-slate-200 p-3 rounded-xl focus:border-blue-500 outline-none">
+                </div>
+                <div>
+                    <label class="block text-[10px] font-bold text-slate-500 uppercase ml-1">Siswa (L)</label>
+                    <input type="number" id="laki" placeholder="0" class="w-full border-2 border-slate-200 p-3 rounded-xl focus:border-blue-500 outline-none">
+                </div>
+                <div>
+                    <label class="block text-[10px] font-bold text-slate-500 uppercase ml-1">Siswa (P)</label>
+                    <input type="number" id="perempuan" placeholder="0" class="w-full border-2 border-slate-200 p-3 rounded-xl focus:border-blue-500 outline-none">
+                </div>
+                <div>
+                    <label class="block text-[10px] font-bold text-slate-500 uppercase ml-1">Jumlah Guru</label>
+                    <input type="number" id="guru" placeholder="0" class="w-full border-2 border-slate-200 p-3 rounded-xl focus:border-blue-500 outline-none">
+                </div>
+                <div>
+                    <label class="block text-[10px] font-bold text-slate-500 uppercase ml-1">Rombongan Belajar</label>
+                    <input type="text" id="rombel" placeholder="Jml Rombel" class="w-full border-2 border-slate-200 p-3 rounded-xl focus:border-blue-500 outline-none">
+                </div>
+                <div>
+                    <label class="block text-[10px] font-bold text-slate-500 uppercase ml-1">Akreditasi</label>
+                    <select id="akreditasi" class="w-full border-2 border-slate-200 p-3 rounded-xl focus:border-blue-500 outline-none">
+                        <option value="">-- Pilih Akreditasi --</option>
+                        <option value="A">Terakreditasi A</option>
+                        <option value="B">Terakreditasi B</option>
+                        <option value="C">Terakreditasi C</option>
+                        <option value="Belum Diakreditasi">Belum Diakreditasi</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-[10px] font-bold text-slate-500 uppercase ml-1">Kurikulum</label>
+                    <input type="text" id="kurikulum" placeholder="K-13 / Merdeka" class="w-full border-2 border-slate-200 p-3 rounded-xl focus:border-blue-500 outline-none">
+                </div>
+                <div>
+                    <label class="block text-[10px] font-bold text-slate-500 uppercase ml-1">Operator Sekolah</label>
+                    <input type="text" id="operator" placeholder="Nama Operator" class="w-full border-2 border-slate-200 p-3 rounded-xl focus:border-blue-500 outline-none">
+                </div>
+                <div>
+                    <label class="block text-[10px] font-bold text-slate-500 uppercase ml-1">Perpustakaan</label>
+                    <input type="text" id="perpus" placeholder="isi dengan angka number" class="w-full border-2 border-slate-200 p-3 rounded-xl focus:border-blue-500 outline-none">
+                </div>
+            </div>
+
+            <div class="bg-blue-50 p-5 rounded-2xl border-2 border-dashed border-blue-200">
+                <p class="text-xs font-bold text-blue-700 uppercase mb-4 text-center">Dokumentasi Foto Sekolah</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-[10px] font-semibold text-slate-600">
+                    <div class="bg-white p-2 rounded-lg shadow-sm">
+                        <span class="block mb-1">FOTO PAPAN NAMA</span>
+                        <input type="file" id="fPapan" accept="image/*" class="w-full">
+                    </div>
+                    <div class="bg-white p-2 rounded-lg shadow-sm">
+                        <span class="block mb-1">FOTO GEDUNG (DEPAN)</span>
+                        <input type="file" id="fDepan" accept="image/*" class="w-full">
+                    </div>
+                    <div class="bg-white p-2 rounded-lg shadow-sm">
+                        <span class="block mb-1">FOTO GEDUNG (SAMPING)</span>
+                        <input type="file" id="fSamping" accept="image/*" class="w-full">
+                    </div>
+                    <div class="bg-white p-2 rounded-lg shadow-sm">
+                        <span class="block mb-1">FOTO GEDUNG (BELAKANG)</span>
+                        <input type="file" id="fBelakang" accept="image/*" class="w-full">
+                    </div>
+                    <div class="bg-white p-2 rounded-lg shadow-sm md:col-span-2">
+                        <span class="block mb-1">FOTO RUANG KELAS / PENDUKUNG</span>
+                        <input type="file" id="fKelas" accept="image/*" class="w-full">
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" id="btnSubmit" class="w-full bg-blue-600 text-white p-4 rounded-2xl font-bold text-lg hover:bg-blue-700 shadow-lg active:scale-95 transition-all">
+                SIMPAN DATA & FOTO
+            </button>
+        </form>
+        <div id="responseMsg" class="mt-6 p-4 rounded-xl text-center text-sm font-bold hidden"></div>
+    </div>
+
+    <script>
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzYd_m7TdrF-48ULxnxGM93nMgyeTIFKW3Ngilbb2X-Kq4A_FV9xqJAJUgGAfMiaxlhBA/exec';
+
+        // Load list sekolah yang belum mengisi [cite: 5, 20, 21]
+        window.onload = () => {
+            fetch(SCRIPT_URL).then(res => res.json()).then(data => {
+                const select = document.getElementById('namaSekolah');
+                select.innerHTML = '<option value="">-- Pilih Sekolah --</option>';
+                data.forEach(nama => {
+                    let opt = document.createElement('option');
+                    opt.value = nama; opt.innerText = nama;
+                    select.appendChild(opt);
+                });
+            });
+        };
+
+        const toBase64 = file => new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => resolve(reader.result.split(',')[1]);
+            reader.onerror = error => reject(error);
+        });
+
+        document.getElementById('uploadForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('btnSubmit');
+            const resMsg = document.getElementById('responseMsg');
+            
+            btn.disabled = true;
+            btn.innerText = "⏳ Sedang Mengunggah...";
+
+            try {
+                const fileIds = ['fPapan', 'fDepan', 'fSamping', 'fBelakang', 'fKelas'];
+                const filesToSend = [];
+
+                for (let id of fileIds) {
+                    const input = document.getElementById(id);
+                    if (input.files[0]) {
+                        filesToSend.push({
+                            base64: await toBase64(input.files[0]),
+                            type: input.files[0].type,
+                            name: id.substring(1).toUpperCase() + "_" + Date.now() + ".jpg"
+                        });
+                    }
+                }
+
+                const payload = {
+                    namaSekolah: document.getElementById('namaSekolah').value,
+                    kepsek: document.getElementById('kepsek').value,
+                    laki: document.getElementById('laki').value,
+                    perempuan: document.getElementById('perempuan').value,
+                    guru: document.getElementById('guru').value,
+                    rombel: document.getElementById('rombel').value,
+                    akreditasi: document.getElementById('akreditasi').value,
+                    operator: document.getElementById('operator').value,
+                    kurikulum: document.getElementById('kurikulum').value,
+                    perpus: document.getElementById('perpus').value,
+                    files: filesToSend
+                };
+
+                const response = await fetch(SCRIPT_URL, { 
+                    method: 'POST', 
+                    body: JSON.stringify(payload) 
+                });
+                
+                const result = await response.text();
+                
+                resMsg.innerText = result;
+                resMsg.classList.remove('hidden');
+                resMsg.className = "mt-6 p-4 rounded-xl text-center text-sm font-bold " + 
+                                  (result.includes("Berhasil") ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700");
+
+                if (result.includes("Berhasil")) {
+                    setTimeout(() => location.reload(), 3000);
+                }
+            } catch (err) {
+                resMsg.innerText = "Terjadi kesalahan: " + err;
+                resMsg.classList.remove('hidden', 'bg-green-100', 'text-green-700');
+                resMsg.classList.add('bg-red-100', 'text-red-700');
+            } finally {
+                btn.disabled = false;
+                btn.innerText = "SIMPAN DATA & FOTO";
+            }
+        });
+    </script>
+</body>
+</html>
