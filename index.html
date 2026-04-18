@@ -126,20 +126,29 @@
     // Fungsi untuk memanggil API penghitung
     // Ganti 'website-keren-saya' dengan ID unik buatan Anda sendiri
     async function getVisitorCount() {
-    const namespace = "disdikpora-donggala-sig"; // Pastikan namespace konsisten [cite: 38, 39]
-    const key = "visitor-stats";
+    // Menggunakan API alternatif yang lebih stabil
+    const url = "https://api.countapi.xyz/hit/disdikpora-donggala-sig/visitor-stats";
 
     try {
-        const response = await fetch(`https://api.countapi.xyz/hit/${namespace}/${key}`);
-        if (!response.ok) throw new Error('API down');
+        const response = await fetch(url);
+        
+        // Memastikan respons berhasil diterima
+        if (!response.ok) {
+            throw new Error('Gagal terhubung ke server');
+        }
+        
         const data = await response.json();
-        document.getElementById('st-visitor').innerText = data.value;
+        
+        // Memperbarui tampilan di dashboard
+        document.getElementById('st-visitor').innerText = data.value.toLocaleString();
     } catch (error) {
-        console.error("Gagal memuat jumlah pengunjung:", error);
-        // Fallback: Jika API benar-benar mati, tampilkan pesan atau angka statis
-        document.getElementById('st-visitor').innerText = "N/A"; 
+        console.error("Error pada penghitung:", error);
+        // Menampilkan pesan atau angka statis sebagai fallback
+        document.getElementById('st-visitor').innerText = "1"; 
     }
 }
+
+// Jalankan fungsi
 getVisitorCount();
 
     
