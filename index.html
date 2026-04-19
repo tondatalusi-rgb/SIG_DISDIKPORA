@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DISDIKPORA | SIG Kabupaten Donggala</title>
+    <title>SISTEM INFORMASI GEOGRAFIS | DISDIKPORA Kabupaten Donggala</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -89,6 +89,11 @@
                 <div class="stat-item"><span>Guru SD</span><span id="st-g-sd">0</span></div>
                 <div class="stat-item"><span>Guru SMP</span><span id="st-g-smp">0</span></div>
 
+                <span class="stat-title">PERPUSTAKAAN</span>
+                <div class="stat-item"><span>PERPUS TK</span><span id="st-perpus-tk" class="stat-value">0</span></div>
+                <div class="stat-item"><span>PERPUS SD</span><span id="st-perpus-sd" class="stat-value">0</span></div>
+                <div class="stat-item"><span>PERPUS SMP</span><span id="st-perpus-smp" class="stat-value">0</span></div>
+
                 <span class="stat-title">AKREDITASI</span>
                 <div id="st-akreditasi-list"></div>
             </div>
@@ -107,7 +112,7 @@
                 <div class="flex items-center gap-3">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/e/e5/Lambang_Kabupaten_Donggala_%282015-sekarang%29.png" alt="Logo Donggala" class="h-10">
                     <div>
-                        <div class="text-[12px] font-bold text-blue-600 leading-tight uppercase">DATA GEOGRAFIS SATUAN PENDIDIKAN JENJANG TK,SD,SMP (NEGERI / SWASTA)</div>
+                        <div class="text-[12px] font-bold text-blue-600 leading-tight uppercase">SEBARAN DATA SATUAN PENDIDIKAN JENJANG TK,SD,SMP (NEGERI / SWASTA)</div>
                         <div class="text-[12px] font-bold text-blue-600 leading-tight uppercase">DINAS PENDIDIKAN PEMUDA DAN OLAHRAGA</div>
                         <h1 class="text-sm font-black text-gray-800 uppercase">KABUPATEN DONGGALA</h1>
                     </div>
@@ -208,7 +213,8 @@
         markers.forEach(m => map.removeLayer(m));
         markers = [];
         let bounds = [];
-        let stats = { total:0, guru:0, sL:0, sP:0, gTK:0, gSD:0, gSMP:0, akr:{} };
+        let stats = { total:0, guru:0, sL:0, sP:0, gTK:0, gSD:0, gSMP:0, akr:{}, 
+              perpusTK:0, perpusSD:0, perpusSMP:0 }; // Tambahkan variabel perpus
 
         schoolData.forEach(d => {
             if ((fStatus === 'ALL' || d.status === fStatus) && (fJenjang === 'ALL' || d.jenjang === fJenjang) && (fKecamatan === 'ALL' || d.kecamatan === fKecamatan)) {
@@ -217,11 +223,19 @@
                 stats.guru += d.guru;
                 stats.sL += d.siswaL;
                 stats.sP += d.siswaP;
+                stats.Perpus += d.hasPerpus;
                 stats.akr[d.akreditasi] = (stats.akr[d.akreditasi] || 0) + 1;
 
                 if(d.jenjang === "TK") stats.gTK += d.guru;
                 if(d.jenjang === "SD") stats.gSD += d.guru;
                 if(d.jenjang === "SMP") stats.gSMP += d.guru;
+                
+                // Akumulasi Perpus berdasarkan jenjang
+        if(d.hasPerpus) {
+            if(d.jenjang === "TK") stats.perpusTK++;
+            if(d.jenjang === "SD") stats.perpusSD++;
+            if(d.jenjang === "SMP") stats.perpusSMP++;
+        }
 
                 const photoLinks = d.fotoDrive ? d.fotoDrive.split(',') : [];
                 let slidesHtml = photoLinks.map(link => {
@@ -250,21 +264,22 @@
                             </div>
                             <div style="background:#f1f3f5; padding:5px; border-radius:4px; text-align:center;">
                                 <p style="font-size:8px; color:#666; margin:0">GURU/SISWA</p><b>${d.guru}/${d.siswaL + d.siswaP}</b>
-                            </div>
+                            </div>                            
                         </div>
                         <div style="line-height:1.4">
                             <p><strong>Kepsek:</strong> ${d.kepsek}</p>
                             <p><strong>Operator:</strong> ${d.operator}</p>
                             <p><strong>Rombel:</strong> ${d.rombel} | <strong>Kurikulum:</strong> ${d.kurikulum}</p>
-                            <p><strong>Detail:</strong> ${d.siswaL} L / ${d.siswaP} P</p>
+                            <p><strong>Detail Siswa:</strong> ${d.siswaL} L / ${d.siswaP} P</p>
+                            <p><strong>Perpustakaan:</strong> ${d.hasPerpus ? 'ADA' : 'TIDAK ADA'}</p>
                         </div>
                         <p style="color:#666; font-size:10px; margin-top:8px; border-top:1px solid #eee; padding-top:5px;">
                              <span class="material-icons" style="font-size:10px; vertical-align:middle">place</span> ${d.alamat}
                         </p>
                         <div style="display:flex; gap:4px; margin-top:12px;">
-                            <a href="${d.linkKemdikbud}" target="_blank" class="btn-lte">REFERENSI</a>
+                            <a href="${d.linkKemdikbud}" target="_blank" class="btn-lte">DETAIL SEKOLAH</a>
                             <a href="https://guru.kemendikdasmen.go.id/" target="_blank" class="btn-lte">RUANG GURU</a> 
-                            <a href="${d.linkWeb}" target="_blank" class="btn-lte">WEB</a> 
+                            <a href="${d.linkWeb}" target="_blank" class="btn-lte">WEBSITE</a> 
                         </div>
                     </div>
                 </div>`;
@@ -289,6 +304,9 @@
         document.getElementById('st-g-tk').innerText = stats.gTK;
         document.getElementById('st-g-sd').innerText = stats.gSD;
         document.getElementById('st-g-smp').innerText = stats.gSMP;
+        document.getElementById('st-perpus-tk').innerText = stats.perpusTK;
+        document.getElementById('st-perpus-sd').innerText = stats.perpusSD;
+        document.getElementById('st-perpus-smp').innerText = stats.perpusSMP;
 
         let akrHtml = '';
         Object.keys(stats.akr).sort().forEach(k => {
