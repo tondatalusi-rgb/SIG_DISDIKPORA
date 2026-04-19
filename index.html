@@ -44,7 +44,7 @@
 <div class="flex h-screen w-full" id="wrapper">
     <aside class="main-sidebar h-full shadow-2xl">
         <div class="flex flex-col items-center py-5 border-b border-gray-700 bg-[#2c3136]">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/9/9c/Logo_of_Ministry_of_Education_and_Culture_of_Republic_of_Indonesia.svg" class="h-12 mb-2">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/9/9c/Logo_of_Ministry_of_Education_and_Culture_of_Republic_of_Indonesia.svg" alt="Logo Kemdikbud" class="h-12 mb-2">
             <span class="text-white font-bold text-lg">DATA GEOGRAFIS</span>
             <span class="text-white font-bold text-sm">DINAS PENDIDIKAN PEMUDA DAN OLAHRAGA</span>
             <span class="text-white font-bold text-xs text-center px-2">KABUPATEN DONGGALA</span>
@@ -52,17 +52,20 @@
 
         <div class="sidebar-content">
             <div class="nav-header">Filter Data Sekolah</div>
+            <label for="filter-status" class="sr-only">Filter Status</label>
             <select id="filter-status" class="filter-select">
                 <option value="ALL">SEMUA STATUS</option>
                 <option value="NEGERI">NEGERI</option>
                 <option value="SWASTA">SWASTA</option>
             </select>
+            <label for="filter-jenjang" class="sr-only">Filter Jenjang</label>
             <select id="filter-jenjang" class="filter-select">
                 <option value="ALL">SEMUA JENJANG</option>
                 <option value="TK">TK / PAUD</option>
                 <option value="SD">SD</option>
                 <option value="SMP">SMP</option>
             </select>
+            <label for="filter-kecamatan" class="sr-only">Filter Kecamatan</label>
             <select id="filter-kecamatan" class="filter-select">
                 <option value="ALL">SEMUA KECAMATAN</option>
             </select>
@@ -72,9 +75,9 @@
                 <div class="stat-item"><span>Total Sekolah</span><span class="stat-value" id="st-total-sekolah">0</span></div>
                 <div class="stat-item"><span>Total Guru</span><span class="stat-value" id="st-total-guru">0</span></div>
                 <div class="stat-item">
-    <span>Pengunjung</span>
-    <span class="stat-value" id="st-visitor">Memuat...</span>
-</div>
+                    <span>Pengunjung</span>
+                    <span class="stat-value" id="st-visitor">Memuat...</span>
+                </div>
 
                 <span class="stat-title">DATA SISWA (L/P)</span>
                 <div class="stat-item"><span>Total Siswa</span><span class="stat-value text-green-400" id="st-siswa-total">0</span></div>
@@ -92,19 +95,20 @@
         </div>
         
         <footer class="p-3 text-center text-[12px] text-gray-500 border-t border-gray-700 bg-[#2c3136]">
-            © 2026 DISDIKPORA KAB. DONGGALA<p>KOMBEL TONDA TALUSI - SOU BATIK</p>
+            <div>© 2026 DISDIKPORA KAB. DONGGALA</div>
+            <div>KOMBEL TONDA TALUSI - SOU BATIK</div>
         </footer>
     </aside>
 
     <main class="flex-grow flex flex-col h-full relative">
         <header class="h-16 bg-white border-b flex items-center justify-between px-4 z-[1000] shadow-sm">
             <div class="flex items-center gap-4">
-                <button onclick="toggleSidebar()" class="text-gray-600 hover:text-blue-600 transition"><span class="material-icons">menu</span></button>
+                <button onclick="toggleSidebar()" class="text-gray-600 hover:text-blue-600 transition" aria-label="Toggle Sidebar"><span class="material-icons">menu</span></button>
                 <div class="flex items-center gap-3">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e5/Lambang_Kabupaten_Donggala_%282015-sekarang%29.png" class="h-10">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e5/Lambang_Kabupaten_Donggala_%282015-sekarang%29.png" alt="Logo Donggala" class="h-10">
                     <div>
-                        <p class="text-[12px] font-bold text-blue-600 leading-tight uppercase">DATA GEOGRAFIS SATUAN PENDIDIKAN JENJANG TK,SD,SMP (NEGERI / SWASTA) </p>
-                        <p class="text-[12px] font-bold text-blue-600 leading-tight uppercase">DINAS PENDIDIKAN PEMUDA DAN OLAHRAGA</p>
+                        <div class="text-[12px] font-bold text-blue-600 leading-tight uppercase">DATA GEOGRAFIS SATUAN PENDIDIKAN JENJANG TK,SD,SMP (NEGERI / SWASTA)</div>
+                        <div class="text-[12px] font-bold text-blue-600 leading-tight uppercase">DINAS PENDIDIKAN PEMUDA DAN OLAHRAGA</div>
                         <h1 class="text-sm font-black text-gray-800 uppercase">KABUPATEN DONGGALA</h1>
                     </div>
                 </div>
@@ -124,22 +128,15 @@
     L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', { subdomains:['mt0','mt1','mt2','mt3'] }).addTo(map);
 
     // Fungsi untuk memanggil API penghitung
-    // Ganti 'website-keren-saya' dengan ID unik buatan Anda sendiri
     async function getVisitorCount() {
-    // Ganti dengan URL Web App dari Google Apps Script Anda
-    const url = "https://script.google.com/macros/s/AKfycbzkcS-FpYCrf-4wtDoOjOHAnlSNyll1yjUzi3qSKUs6lDmbOokoZBj-iGmcwYHZCOVe7Q/exec";
-
-    try {
-        const response = await fetch(url);
-        const data = await response.text();
-        document.getElementById('st-visitor').innerText = data;
-    } catch (error) {
-        console.error("Gagal memuat:", error);
-        document.getElementById('st-visitor').innerText = "1";
+        const url = "https://script.google.com/macros/s/AKfycbzkcS-FpYCrf-4wtDoOjOHAnlSNyll1yjUzi3qSKUs6lDmbOokoZBj-iGmcwYHZCOVe7Q/exec";
+        try {
+            const response = await fetch(url);
+            const data = await response.text();
+            document.getElementById('st-visitor').innerText = data;
+        } catch (error) { document.getElementById('st-visitor').innerText = "1"; }
     }
-}
-
-    
+    getVisitorCount();
 
     const sheetId = '1wKoBJN32c7RPvi024pum3uC0wvE8NA032G-fNbHWNOY';
     const csvUrl = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:csv`;
