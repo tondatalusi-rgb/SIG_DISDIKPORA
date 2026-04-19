@@ -13,17 +13,20 @@
 <body class="bg-slate-100 min-h-screen p-4 flex items-center justify-center">
     <div class="max-w-2xl w-full bg-white p-8 rounded-3xl shadow-2xl">
         <div class="text-center mb-8">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e5/Lambang_Kabupaten_Donggala_%282015-sekarang%29.png" 
-         alt="Logo Kabupaten Donggala" 
-         class="h-24 mx-auto mb-4">
-    
-    <h1 class="text-lg font-bold text-slate-800 uppercase">Pemutakhiran Data & Foto</h1>
-    <p class="text-sm text-slate-500 font-semibold">SISTEM INFORMASI GEOGRAFIS DISDIKPORA <p>KABUPATEN DONGGALA</p>
-</div>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e5/Lambang_Kabupaten_Donggala_%282015-sekarang%29.png" 
+                 alt="Logo Kabupaten Donggala" 
+                 class="h-24 mx-auto mb-4">
+            
+            <h1 class="text-lg font-bold text-slate-800 uppercase">Pemutakhiran Data & Foto</h1>
+            <div class="text-sm text-slate-500 font-semibold">
+                SISTEM INFORMASI GEOGRAFIS DISDIKPORA
+                <div>KABUPATEN DONGGALA</div>
+            </div>
+        </div>
         
         <form id="uploadForm" class="space-y-5">
             <div>
-                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Pilih Sekolah:</label>
+                <label for="namaSekolah" class="block text-xs font-bold text-slate-700 uppercase mb-1">Pilih Sekolah:</label>
                 <select id="namaSekolah" class="w-full border-2 border-slate-200 p-3 rounded-xl focus:border-blue-500 outline-none" required>
                     <option value="">-- Memuat daftar sekolah... --</option>
                 </select>
@@ -31,28 +34,28 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div class="md:col-span-2">
-                    <label class="block text-[10px] font-bold text-slate-500 uppercase ml-1">Nama Kepala Sekolah</label>
-                    <input type="text" id="kepsek" placeholder="Nama Lengkap & Gelar" class="w-full border-2 border-slate-200 p-3 rounded-xl focus:border-blue-500 outline-none">
+                    <label for="kepsek" class="block text-[10px] font-bold text-slate-500 uppercase ml-1">Nama Kepala Sekolah *</label>
+                    <input type="text" id="kepsek" required placeholder="Nama Lengkap & Gelar" class="w-full border-2 border-slate-200 p-3 rounded-xl focus:border-blue-500 outline-none">
                 </div>
                 <div>
-                    <label class="block text-[10px] font-bold text-slate-500 uppercase ml-1">Siswa (L)</label>
-                    <input type="number" id="laki" placeholder="0" class="w-full border-2 border-slate-200 p-3 rounded-xl focus:border-blue-500 outline-none">
+                    <label for="laki" class="block text-[10px] font-bold text-slate-500 uppercase ml-1">Siswa (L) *</label>
+                    <input type="number" id="laki" required min="0" placeholder="0" class="w-full border-2 border-slate-200 p-3 rounded-xl focus:border-blue-500 outline-none">
                 </div>
                 <div>
-                    <label class="block text-[10px] font-bold text-slate-500 uppercase ml-1">Siswa (P)</label>
-                    <input type="number" id="perempuan" placeholder="0" class="w-full border-2 border-slate-200 p-3 rounded-xl focus:border-blue-500 outline-none">
+                    <label for="perempuan" class="block text-[10px] font-bold text-slate-500 uppercase ml-1">Siswa (P) *</label>
+                    <input type="number" id="perempuan" required min="0" placeholder="0" class="w-full border-2 border-slate-200 p-3 rounded-xl focus:border-blue-500 outline-none">
                 </div>
                 <div>
-                    <label class="block text-[10px] font-bold text-slate-500 uppercase ml-1">Jumlah Guru</label>
-                    <input type="number" id="guru" placeholder="0" class="w-full border-2 border-slate-200 p-3 rounded-xl focus:border-blue-500 outline-none">
+                    <label for="guru" class="block text-[10px] font-bold text-slate-500 uppercase ml-1">Jumlah Guru *</label>
+                    <input type="number" id="guru" required min="0" placeholder="0" class="w-full border-2 border-slate-200 p-3 rounded-xl focus:border-blue-500 outline-none">
                 </div>
                 <div>
-                    <label class="block text-[10px] font-bold text-slate-500 uppercase ml-1">Rombongan Belajar</label>
-                    <input type="text" id="rombel" placeholder="Jml Rombel" class="w-full border-2 border-slate-200 p-3 rounded-xl focus:border-blue-500 outline-none">
+                    <label for="rombel" class="block text-[10px] font-bold text-slate-500 uppercase ml-1">Rombongan Belajar *</label>
+                    <input type="text" id="rombel" required placeholder="Jml Rombel" class="w-full border-2 border-slate-200 p-3 rounded-xl focus:border-blue-500 outline-none">
                 </div>
                 <div>
-                    <label class="block text-[10px] font-bold text-slate-500 uppercase ml-1">Akreditasi</label>
-                    <select id="akreditasi" class="w-full border-2 border-slate-200 p-3 rounded-xl focus:border-blue-500 outline-none">
+                    <label for="akreditasi" class="block text-[10px] font-bold text-slate-500 uppercase ml-1">Akreditasi *</label>
+                    <select id="akreditasi" required class="w-full border-2 border-slate-200 p-3 rounded-xl focus:border-blue-500 outline-none">
                         <option value="">-- Pilih Akreditasi --</option>
                         <option value="A">Terakreditasi A</option>
                         <option value="B">Terakreditasi B</option>
@@ -61,15 +64,15 @@
                     </select>
                 </div>
                 <div>
-                    <label class="block text-[10px] font-bold text-slate-500 uppercase ml-1">Kurikulum</label>
-                    <input type="text" id="kurikulum" placeholder="K-13 / Merdeka" class="w-full border-2 border-slate-200 p-3 rounded-xl focus:border-blue-500 outline-none">
+                    <label for="kurikulum" class="block text-[10px] font-bold text-slate-500 uppercase ml-1">Kurikulum *</label>
+                    <input type="text" id="kurikulum" required placeholder="K-13 / Merdeka" class="w-full border-2 border-slate-200 p-3 rounded-xl focus:border-blue-500 outline-none">
                 </div>
                 <div>
-                    <label class="block text-[10px] font-bold text-slate-500 uppercase ml-1">Operator Sekolah</label>
-                    <input type="text" id="operator" placeholder="Nama Operator" class="w-full border-2 border-slate-200 p-3 rounded-xl focus:border-blue-500 outline-none">
+                    <label for="operator" class="block text-[10px] font-bold text-slate-500 uppercase ml-1">Operator Sekolah *</label>
+                    <input type="text" id="operator" required placeholder="Nama Operator" class="w-full border-2 border-slate-200 p-3 rounded-xl focus:border-blue-500 outline-none">
                 </div>
                 <div>
-                    <label class="block text-[10px] font-bold text-slate-500 uppercase ml-1">Perpustakaan</label>
+                    <label for="perpus" class="block text-[10px] font-bold text-slate-500 uppercase ml-1">Perpustakaan</label>
                     <input type="text" id="perpus" placeholder="isi dengan angka number" class="w-full border-2 border-slate-200 p-3 rounded-xl focus:border-blue-500 outline-none">
                 </div>
             </div>
@@ -78,23 +81,23 @@
                 <p class="text-xs font-bold text-blue-700 uppercase mb-4 text-center">Dokumentasi Foto Sekolah</p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-[10px] font-semibold text-slate-600">
                     <div class="bg-white p-2 rounded-lg shadow-sm">
-                        <span class="block mb-1">FOTO PAPAN NAMA</span>
+                        <label for="fPapan" class="block mb-1">FOTO PAPAN NAMA</label>
                         <input type="file" id="fPapan" accept="image/*" class="w-full">
                     </div>
                     <div class="bg-white p-2 rounded-lg shadow-sm">
-                        <span class="block mb-1">FOTO GEDUNG (DEPAN)</span>
+                        <label for="fDepan" class="block mb-1">FOTO GEDUNG (DEPAN)</label>
                         <input type="file" id="fDepan" accept="image/*" class="w-full">
                     </div>
                     <div class="bg-white p-2 rounded-lg shadow-sm">
-                        <span class="block mb-1">FOTO GEDUNG (SAMPING)</span>
+                        <label for="fSamping" class="block mb-1">FOTO GEDUNG (SAMPING)</label>
                         <input type="file" id="fSamping" accept="image/*" class="w-full">
                     </div>
                     <div class="bg-white p-2 rounded-lg shadow-sm">
-                        <span class="block mb-1">FOTO GEDUNG (BELAKANG)</span>
+                        <label for="fBelakang" class="block mb-1">FOTO GEDUNG (BELAKANG)</label>
                         <input type="file" id="fBelakang" accept="image/*" class="w-full">
                     </div>
                     <div class="bg-white p-2 rounded-lg shadow-sm md:col-span-2">
-                        <span class="block mb-1">FOTO RUANG KELAS / KEGIATAN GURU</span>
+                        <label for="fKelas" class="block mb-1">FOTO RUANG KELAS</label>
                         <input type="file" id="fKelas" accept="image/*" class="w-full">
                     </div>
                 </div>
@@ -110,7 +113,6 @@
     <script>
         const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzYd_m7TdrF-48ULxnxGM93nMgyeTIFKW3Ngilbb2X-Kq4A_FV9xqJAJUgGAfMiaxlhBA/exec';
 
-        // Load list sekolah yang belum mengisi [cite: 5, 20, 21]
         window.onload = () => {
             fetch(SCRIPT_URL).then(res => res.json()).then(data => {
                 const select = document.getElementById('namaSekolah');
@@ -136,7 +138,7 @@
             const resMsg = document.getElementById('responseMsg');
             
             btn.disabled = true;
-            btn.innerText = "⏳ Sedang Mengunggah...";
+            btn.innerText = "⏳ Sedang Mengunggah, Mohon Tunggu...";
 
             try {
                 const fileIds = ['fPapan', 'fDepan', 'fSamping', 'fBelakang', 'fKelas'];
